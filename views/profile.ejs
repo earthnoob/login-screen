@@ -1,44 +1,54 @@
-<!-- views/profile.ejs -->
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        body        { padding-top:80px; word-wrap:break-word; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/styles_profile.css">
+    <title>Login Page</title>
 </head>
 <body>
-<div class="container">
-
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>
-
-    <div class="row">
-
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
-
-                    <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>username</strong>: <%= user.username %><br>
-                        <strong>password</strong>: <%= user.password %><br>
-                        <strong>first_name</strong>: <%= user.first_name %><br>
-                        <strong>last_name</strong>: <%= user.last_name %><br>
-                        <strong>gender</strong>: <%= user.gender %><br>
-                        <strong>age</strong>: <%= user.age %><br>
-                    </p>
-
+    <div class="flex-center-main-axis flex-row">
+        <div class="box flex-center-cross-axis flex-col">
+            <div class="box-header">
+                <h1><%= user.first_name %> <%= user.last_name %></h1>
+                <p>@<%= user.username %></p>
             </div>
+            <div class="card flex-center-main-axis flex-col">
+                <div class="card-info">
+                    <h5>First Name</h5>
+                    <p><%= user.first_name %></p>
+                </div>
+                <div class="card-info">
+                    <h5>Last Name</h5>
+                    <p><%= user.last_name %></p>
+                </div>
+                <div class="card-info">
+                    <h5>Gender</h5>
+                    <p><%= user.gender %></p>
+                </div>
+                <div class="card-info">
+                    <h5>Age</h5>
+                    <p><%= user.age %></p>
+                </div>
+                
+            </div>
+            <div class="card flex-center-main-axis flex-col">
+                <div class="card-info">
+                    <h5>Username</h5>
+                    <p><%= user.username %></p>
+                </div>
+                <div class="card-info">
+                    <h5>Password</h5>
+                    <p><%= user.password %></p>
+                </div>
+                <div class="card-info">
+                    <h5>ID</h5>
+                    <p><%= user._id %></p>
+                </div> 
+            </div>
+            <a href="/logout" class="button">Logout</a>
         </div>
-
     </div>
-
-</div>
 </body>
 </html>

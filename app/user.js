@@ -7,7 +7,8 @@ var userSchema = new mongoose.Schema({
     first_name: String,
     last_name: String,
     gender: String,
-    age: String
+    age: String,
+    active: Boolean
 })
 
 userSchema.methods.generateHash = function(password) {

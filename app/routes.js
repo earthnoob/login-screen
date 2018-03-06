@@ -4,7 +4,17 @@ module.exports = function(app, passport) {
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/', function(req, res) {
-        res.render('index.ejs'); // load the index.ejs file
+        if(req.isAuthenticated())
+            res.render('profile.ejs', { user: req.user });
+        else
+        res.render('index.ejs', { message: req.flash('loginMessage') }); // load the index.ejs file
+    });
+
+    app.get('/index', function(req, res) {
+        if(req.isAuthenticated())
+            res.render('profile.ejs', { user: req.user });
+        else
+        res.render('index.ejs', { message: req.flash('loginMessage') }); // load the index.ejs file
     });
 
     // =====================================
@@ -14,7 +24,7 @@ module.exports = function(app, passport) {
     app.get('/login', function(req, res) {
 
         // render the page and pass in any flash data if it exists
-        res.render('login.ejs', { message: req.flash('loginMessage') }); 
+        res.render('index.ejs', { message: req.flash('loginMessage') }); 
     });
 
     // process the login form
@@ -39,9 +49,15 @@ module.exports = function(app, passport) {
     // we will want this protected so you have to be logged in to visit
     // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user // get the user out of session and pass to template
+        //console.log("Authenticated");
+        res.render('profile', {
+            user : req.user, // get the user out of session and pass to template
+            message: req.flash('signupMessage')
         });
+    });
+
+    app.get('/forgotpassword', function(req, res) {
+        res.render('forgotpassword');
     });
 
     // =====================================
@@ -62,7 +78,7 @@ module.exports = function(app, passport) {
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureRedirect : '/index', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 };
@@ -75,5 +91,6 @@ function isLoggedIn(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
+    console.log("Not authenticated");
     res.redirect('/');
 }

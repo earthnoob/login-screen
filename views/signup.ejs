@@ -1,63 +1,60 @@
-<!-- views/signup.ejs -->
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <title>Login Page</title>
 </head>
 <body>
-<div class="container">
+    <div class="flex-center flex-col">
+        <div id="login-container">
+            <div class="box flex-center flex-col">
+                    <% if (message.length > 0) { %>
+                        <h3><%= message %></h3>
+                    <% } %>
+                    <% if (message.length <= 0) { %>
+                        <h3>Welcome to the most exciting webpage on Earth!</h3>
+                    <% } %>
+                <form action"/signup" method="post">
+                    <div class="login-text">
+                        <h4>First Name</h4>
+                        <input type="text" name="first_name">
+                    </div>
 
-<div class="col-sm-6 col-sm-offset-3">
+                    <div class="login-text">
+                        <h4>Last Name</h4>
+                        <input type="text" name="last_name">
+                    </div>
 
-    <h1><span class="fa fa-sign-in"></span> Signup</h1>
+                    <div class="login-text">
+                        <h4>Username</h4>
+                        <input type="text" name="username">
+                    </div>
 
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
+                    <div class="login-text">
+                        <h4>Password</h4>
+                        <input type="password" name="password">
+                    </div>
+                    
+                    <div class="login-text">
+                        <h4>Gender</h4>
+                        <input type="text" name="gender">
+                    </div>
 
-    <!-- LOGIN FORM -->
-    <form action="/signup" method="post">
-        <div class="form-group">
-            <label>Username</label>
-            <input type="text" class="form-control" name="username">
+                    <div class="login-text">
+                        <h4>Age</h4>
+                        <input type="text" name="age">
+                    </div>
+
+                    <button type="submit" class="button-submit">Create Account</button>
+                </form>
+            </div>
+            <div id="bottom">
+                <p>Already have an account? <strong><a href="/">Login</a></strong>.</p>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
-        </div>
-        <div class="form-group">
-            <label>Fistname</label>
-            <input type="text" class="form-control" name="first_name">
-        </div>
-        <div class="form-group">
-            <label>Lastname</label>
-            <input type="text" class="form-control" name="last_name">
-        </div>
-        <div class="form-group">
-            <label>Gender</label>
-            <input type="text" class="form-control" name="gender">
-        </div>
-        <div class="form-group">
-            <label>Age</label>
-            <input type="text" class="form-control" name="age">
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-lg">Signup</button>
-    </form>
-
-    <hr>
-
-    <p>Already have an account? <a href="/login">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
-
-</div>
-
-</div>
+    </div>
 </body>
 </html>

@@ -1,26 +1,42 @@
-<!-- views/index.ejs -->
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <title>Login Page</title>
 </head>
 <body>
-<div class="container">
-
-    <div class="jumbotron text-center">
-        <h1><span class="fa fa-lock"></span> Node Authentication</h1>
-
-        <p>Login or Register with:</p>
-
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+    <div class="flex-center flex-col">
+        <div id="title">
+            <h1>Login Page</h1>
+        </div>
+        <div id="login-container">
+            <div class="box flex-center flex-col">
+                <% if (message.length > 0) { %>
+                    <h3><%= message %></h3>
+                <% } %>
+                <% if (message.length <= 0) { %>
+                    <h3>Enter your credentials to proceed???</h3>
+                <% } %>
+                
+                <form action="/login" method="post">
+                    <div class="login-text">
+                        <h4>Username</h4>
+                        <input type="text" name="username">
+                    </div>
+                    
+                    <div class="login-text">
+                        <h4>Password</h4>
+                        <input type="password" name="password">
+                    </div>
+                    <button type="submit" class="button-submit">Login</button>
+                </form>
+                <a href="/forgotpassword">I forgot my password</a>
+            </div>
+            
+        </div>
+        <div id="bottom">
+            <p>Don't have an account? <strong><a href="/signup">Create one</a></strong>.</p>
+        </div>
     </div>
-
-</div>
 </body>
 </html>
